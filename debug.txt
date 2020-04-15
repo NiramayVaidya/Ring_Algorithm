@@ -1,0 +1,50 @@
+DEBUG: priority 5 has port 16073
+DEBUG: s_skt set by priority 5 to 16073
+DEBUG: priority 4 has port 16072
+DEBUG: s_skt set by priority 4 to 16072
+DEBUG: c_skt set by priority 4 to 16073
+DEBUG: priority 3 has port 16071
+DEBUG: s_skt set by priority 3 to 16071
+DEBUG: priority 2 has port 16070
+DEBUG: s_skt set by priority 2 to 16070
+DEBUG: c_skt set by priority 3 to 16072
+DEBUG: priority 1 has port 16069
+DEBUG: s_skt set by priority 1 to 16069
+DEBUG: c_skt set by priority 5 to 16069
+DEBUG: c_skt set by priority 2 to 16071
+DEBUG: c_skt set by priority 1 to 16070
+DEBUG: coordinator_id set to -1 by priority 1
+DEBUG: shared_priority_list is set to [1] by priority 1
+DEBUG: s_skt reset by priority 1 to 16069
+DEBUG: shared_priority_list is sent as [1] by priority 1
+DEBUG: shared_priority_list is received as [1] by priority 2
+DEBUG: shared_priority_list is set to [1, 2] by priority 2
+DEBUG: shared_priority_list is sent as [1, 2] by priority 2
+DEBUG: shared_priority_list is received as [1, 2] by priority 3
+DEBUG: shared_priority_list is set to [1, 2, 3] by priority 3
+DEBUG: shared_priority_list is sent as [1, 2, 3] by priority 3
+DEBUG: c_skt reset by priority 4 to 16069
+DEBUG: shared_priority_list is received as [1, 2, 3] by priority 4
+DEBUG: shared_priority_list is set to [1, 2, 3, 4] by priority 4
+DEBUG: shared_priority_list is sent as [1, 2, 3, 4] by priority 4
+DEBUG: shared_priority_list is received as [1, 2, 3, 4] by priority 1
+DEBUG: s_skt reset by priority 5 to 16073
+DEBUG: coordinator_id set to -1 by priority 2
+DEBUG: shared_priority_list is set to [2] by priority 2
+DEBUG: shared_priority_list is sent as [2] by priority 2
+DEBUG: s_skt reset by priority 1 to 16069
+DEBUG: c_skt reset by priority 5 to 16069
+DEBUG: shared_priority_list is received as [2] by priority 3
+DEBUG: shared_priority_list is set to [2, 3] by priority 3
+DEBUG: shared_priority_list is sent as [2, 3] by priority 3
+DEBUG: c_skt reset by priority 4 to 16073
+DEBUG: shared_priority_list is received as [2, 3] by priority 4
+DEBUG: shared_priority_list is set to [2, 3, 4] by priority 4
+DEBUG: shared_priority_list is sent as [2, 3, 4] by priority 4
+DEBUG: shared_priority_list is received as [2, 3, 4] by priority 5
+DEBUG: shared_priority_list is set to [2, 3, 4, 5] by priority 5
+DEBUG: shared_priority_list is sent as [2, 3, 4, 5] by priority 5
+DEBUG: shared_priority_list is received as [2, 3, 4, 5] by priority 1
+DEBUG: shared_priority_list is set to [2, 3, 4, 5, 1] by priority 1
+DEBUG: shared_priority_list is sent as [2, 3, 4, 5, 1] by priority 1
+DEBUG: shared_priority_list is received as [2, 3, 4, 5, 1] by priority 2

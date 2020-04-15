@@ -1,0 +1,36 @@
+Algorithm flow-
+num_of_processes taken as input from command line
+processes created with decreasing process IDs starting from num_of_processes to 1, process IDs are the process priorities itself (highest ID corresponds to highest priority)
+every process knows the ID/priority of the process to its right and its left (assuming a ring structure) along with its IP address and its port (for now, every process runs on localhost but on different ports)
+process with highest priority is always the coordinator
+coordinator process prints "coordinator:<process_ID/priority>" to terminal immediately after it knows it is the coordinator
+every process does the work of printing a message "work:<process_ID/priority>" to the terminal with some time interval in a loop
+after a certain period of time, the starting coordinator will stop printing its work message, which simulates its failure
+after it stops printing, it updates shared variable (shared among all existing processes) coordinator_process to ("<IP_address>", port) from its initial value of (None, None), shared variable coordinator_next_process to ("<right_neighbor_IP_address>", <right_neighbor_port>) from the initial value of (None, None), shared variable coordinator_previous_process to ("<left_neighbor_IP_address>", <left_neighbor_port>) from the initial value of (None, None), prints "failed:<process_ID/priority>", and then sleeps for a long time
+all the other processes at the start of their work loops check this coordinator_id using locks for atomic access to see if the value is -1, if not, do nothing since there is an alive coordinator, if yes, change its value to 0, this will be done by the first process which is able to access this variable and the rest of the processes will then see 0 and won't do anything
+this process will then create a list, append its ID/priority to it, and send it over to its right neighbor, the neighbor receives this list, appends its own priority to the list, checks its neighbor's locally stored IP_address+port combination with the one stored in coordinator_process, if it matches send the updated list to IP_address+port stored in coordinator_next_process, else send it to its right neighbor
+the process which initiated the list sharing receives the updated list back, it checks the max priority in the list, updates the coordinator_id to this value
+every process while checking the coordinator_id value, if that value is equal to its own priority, will print to terminal the coordinator message
+after the long sleep, the previously failed coordinator will come alive, print "recovered"<process_ID/priority>" and set the coordinator_id to -1, and coordinator_process, coordinator_next_process and coordinator_previous_process to (None, None), triggering the rerun of this flow resulting in the declaration of it as the coordinator again (this process will be incuded in the sharing of the list within the loop this time, since every process comparing its right neighbor configuration to coordinator_process will not result in a match and hence will send the updated list to its right neighbor itself instead of sending it to configuration stored in coordinator_next_process, which will be (None, None) at this point anyways)
+
+Shared variables among all processes-
+coordinator_id
+coordinator_process
+coordinator_next_process
+coordinator_previous_process
+base_port
+
+Example-
+num_of_processes = 5
+process IDs/priorities = 5, 4, 3, 2, 1
+coordinator:5
+multiple "work:<priority>" messages
+failed:5
+coordinator:4
+multiple "work:<priority>" messages
+recovered:5
+coordinator:5
+multiple "work:<priority>" messages
+
+Execution command-
+python3 ring.py -numproc <num_of_processes>
